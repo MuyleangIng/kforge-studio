@@ -1,7 +1,7 @@
 #pragma once
 #include <QWidget>
 #include <QMap>
-#include "MainWindow.h"
+#include "BuildJob.h"
 
 class QLineEdit;
 class QComboBox;

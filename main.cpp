@@ -10,9 +10,11 @@ int main(int argc, char *argv[])
     QApplication::setOrganizationName("KhmerStack");
     QApplication::setOrganizationDomain("khmerstack.dev");
 
-    // Enable HiDPI
+    // HiDPI is automatic in Qt6; these attributes only needed for Qt5
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
 
     QApplication app(argc, argv);
     app.setFont(QFont("Consolas", 12));

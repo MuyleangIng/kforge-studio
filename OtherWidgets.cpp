@@ -524,8 +524,10 @@ void DashboardWidget::refresh()
     m_failed->setText(QString::number(failed));
 
     m_recentTree->clear();
-    for (auto it = jobs.crbegin(); it != jobs.crend(); ++it) {
-        const BuildJob &j = it.value();
+    // Build list in reverse order (most recent first)
+    QList<BuildJob> jobList = jobs.values();
+    for (int i = jobList.size() - 1; i >= 0; --i) {
+        const BuildJob &j = jobList[i];
         QTreeWidgetItem *item = new QTreeWidgetItem(m_recentTree);
         item->setText(0, j.id.left(8));
         item->setText(1, j.tag);

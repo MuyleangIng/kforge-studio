@@ -1,6 +1,8 @@
 #pragma once
+#include "BuildJob.h"
 #include <QWidget>
 #include <QProcess>
+#include "OtherWidgets.h"
 
 class QTextEdit;
 class QPushButton;

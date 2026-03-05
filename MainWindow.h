@@ -1,44 +1,19 @@
 #pragma once
-
 #include <QMainWindow>
 #include <QProcess>
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QMap>
-#include <QUuid>
+#include <QStackedWidget>
+#include "BuildJob.h"
 
-class QStackedWidget;
-class QListWidget;
-class QLabel;
-class QPushButton;
-class QProgressBar;
-class QTextEdit;
-class QSplitter;
+class SidebarWidget;
 class BuildJobWidget;
 class BuilderManagerWidget;
 class BakeWidget;
 class SettingsWidget;
-class SidebarWidget;
 class DashboardWidget;
 
-// ──────────────────────────────────────────────
-// BuildJob — represents one running kforge build
-// ──────────────────────────────────────────────
-struct BuildJob {
-    QString id;
-    QString tag;
-    QString context;
-    QStringList platforms;
-    QString progress;
-    QProcess *process = nullptr;
-    QString status;   // "running" | "success" | "failed" | "cancelled"
-    qint64  startedAt = 0;
-    QString logOutput;
-};
-
-// ──────────────────────────────────────────────
-// MainWindow
-// ──────────────────────────────────────────────
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -65,16 +40,14 @@ private:
     void applyDarkTheme();
     QString jobIdFromProcess(QProcess *p) const;
 
-    // ── layout ──
-    SidebarWidget   *m_sidebar   = nullptr;
-    QStackedWidget  *m_stack     = nullptr;
-    DashboardWidget *m_dashboard = nullptr;
-    BuildJobWidget  *m_buildPage = nullptr;
-    BuilderManagerWidget *m_builderPage = nullptr;
-    BakeWidget      *m_bakePage  = nullptr;
-    SettingsWidget  *m_settingsPage = nullptr;
+    SidebarWidget        *m_sidebar      = nullptr;
+    QStackedWidget       *m_stack        = nullptr;
+    DashboardWidget      *m_dashboard    = nullptr;
+    BuildJobWidget       *m_buildPage    = nullptr;
+    BuilderManagerWidget *m_builderPage  = nullptr;
+    BakeWidget           *m_bakePage     = nullptr;
+    SettingsWidget       *m_settingsPage = nullptr;
 
-    // ── state ──
     QMap<QString, BuildJob> m_jobs;
     QSystemTrayIcon *m_tray  = nullptr;
     QTimer          *m_timer = nullptr;
