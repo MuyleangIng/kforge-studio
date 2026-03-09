@@ -2,10 +2,6 @@
 #include "SidebarWidget.h"
 #include "BuildJobWidget.h"
 #include "OtherWidgets.h"
-#include "SidebarWidget.h"
-#include "BuildJobWidget.h"
-#include "OtherWidgets.h"
-#include "OtherWidgets.h"
 
 #include <QApplication>
 #include <QHBoxLayout>

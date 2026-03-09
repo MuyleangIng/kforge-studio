@@ -3,6 +3,7 @@
 #include <QMap>
 #include "BuildJob.h"
 
+class MainWindow;
 class QLineEdit;
 class QComboBox;
 class QCheckBox;

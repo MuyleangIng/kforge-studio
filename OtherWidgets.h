@@ -2,7 +2,6 @@
 #include "BuildJob.h"
 #include <QWidget>
 #include <QProcess>
-#include "OtherWidgets.h"
 
 class QTextEdit;
 class QPushButton;
@@ -10,6 +9,39 @@ class QLineEdit;
 class QComboBox;
 class QLabel;
 class QTreeWidget;
+class QTableWidget;
+
+// ─────────────────────────────────────────────
+// BuilderManagerWidget – manage BuildKit builders
+// ─────────────────────────────────────────────
+class BuilderManagerWidget : public QWidget {
+    Q_OBJECT
+public:
+    explicit BuilderManagerWidget(QWidget *parent = nullptr);
+
+private slots:
+    void onCreateBuilder();
+    void onUseBuilder();
+    void onRemoveBuilder();
+    void onRefresh();
+    void onProcessOutput();
+    void onProcessDone(int exit, QProcess::ExitStatus);
+
+private:
+    void runKforge(const QStringList &args);
+    QString selectedBuilderName() const;
+
+    QLineEdit    *m_nameEdit     = nullptr;
+    QComboBox    *m_driverBox    = nullptr;
+    QLineEdit    *m_endpointEdit = nullptr;
+    QPushButton  *m_createBtn    = nullptr;
+    QPushButton  *m_refreshBtn   = nullptr;
+    QPushButton  *m_useBtn       = nullptr;
+    QPushButton  *m_rmBtn        = nullptr;
+    QTableWidget *m_table        = nullptr;
+    QLabel       *m_statusLabel  = nullptr;
+    QProcess     *m_process      = nullptr;
+};
 
 // ─────────────────────────────────────────────
 // BakeWidget – declarative bake builds
